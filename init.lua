@@ -44,18 +44,6 @@ require('lazy').setup({
   { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
 
   {
-    'nvim-lualine/lualine.nvim',
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'catppuccin',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
-
-  {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -295,6 +283,13 @@ require('mini.pairs').setup()
 require('mini.completion').setup({
   window = { info = { border = 'single' } }
 })
+require('mini.statusline').setup({
+  use_icons = false
+})
+require('mini.indentscope').setup({
+  symbol = "!"
+})
+
 require('mini.clue').setup({
   triggers = {
     -- Leader triggers
