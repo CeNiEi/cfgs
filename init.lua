@@ -99,50 +99,6 @@ vim.defer_fn(function()
         node_decremental = '<M-space>',
       },
     },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['aa'] = '@parameter.outer',
-          ['ia'] = '@parameter.inner',
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
-        },
-        goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
-        },
-        goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
-        },
-      },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
-    },
   }
 end, 0)
 
@@ -177,15 +133,8 @@ mason_lspconfig.setup_handlers {
               vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
             end
 
-            nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-            nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
             nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-            -- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-            -- nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
             nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-            -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-            -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
             nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
             nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
@@ -240,20 +189,6 @@ require("catppuccin").setup({
 })
 vim.cmd.colorscheme "catppuccin"
 
-local win_config = function()
-  height = math.floor(0.618 * vim.o.lines)
-  width = math.floor(0.618 * vim.o.columns)
-  return {
-    anchor = 'NW',
-    height = height,
-    width = width,
-    row = math.floor(0.5 * (vim.o.lines - height)),
-    col = math.floor(0.5 * (vim.o.columns - width)),
-    border = 'single',
-  }
-end
-
-
 local animate = require('mini.animate')
 animate.setup {
   scroll = {
@@ -275,7 +210,18 @@ require('mini.pick').setup({
     use_cache = true
   },
   window = {
-    config = win_config,
+    config = function()
+      height = math.floor(0.618 * vim.o.lines)
+      width = math.floor(0.618 * vim.o.columns)
+      return {
+        anchor = 'NW',
+        height = height,
+        width = width,
+        row = math.floor(0.5 * (vim.o.lines - height)),
+        col = math.floor(0.5 * (vim.o.columns - width)),
+        border = 'single',
+      }
+    end,
   }
 })
 require("mini.starter").setup()
@@ -287,9 +233,9 @@ require('mini.statusline').setup({
   use_icons = false
 })
 require('mini.indentscope').setup({
-  symbol = "!"
+  symbol = "፧"
 })
-
+require('mini.bracketed').setup()
 require('mini.clue').setup({
   triggers = {
     -- Leader triggers
@@ -367,7 +313,5 @@ vim.keymap.set("n", "<leader>fs", "<cmd>lua MiniPick.builtin.grep_live()<cr>",
 vim.keymap.set("n", "<leader>fh", "<cmd>lua MiniPick.builtin.help()<cr>",
   { noremap = true, silent = true, desc = 'Find Help' })
 
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
