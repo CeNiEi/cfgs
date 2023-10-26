@@ -76,6 +76,8 @@ vim.o.timeoutlen = 300
 
 vim.o.completeopt = 'menuone,noselect'
 
+vim.wo.relativenumber = true
+
 vim.o.termguicolors = true
 
 -- [[ Configure Treesitter ]]
@@ -205,7 +207,7 @@ require('mini.statusline').setup({
   use_icons = false
 })
 require('mini.indentscope').setup({
-  symbol = "፧"
+  symbol = "❗️"
 })
 require('mini.bracketed').setup()
 require('mini.clue').setup({
