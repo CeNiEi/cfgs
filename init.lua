@@ -41,7 +41,8 @@ require('lazy').setup({
     }
   },
 
-  { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
+  -- { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
+  {"nyoom-engineering/oxocarbon.nvim", },
 
   {
     'nvim-treesitter/nvim-treesitter',
@@ -157,37 +158,8 @@ mason_lspconfig.setup_handlers {
   end
 }
 
--- setup catpuccin
-vim.g.catppuccin_flavour = "macchiato"
-require("catppuccin").setup({
-  integrations = {
-    mini = true,
-    mason = true,
-    neotree = true,
-    gitsigns = true,
-    fidget = true,
-    treesitter = true,
-    native_lsp = {
-      enabled = true,
-      virtual_text = {
-        errors = { "italic" },
-        hints = { "italic" },
-        warnings = { "italic" },
-        information = { "italic" },
-      },
-      underlines = {
-        errors = { "underline" },
-        hints = { "underline" },
-        warnings = { "underline" },
-        information = { "underline" },
-      },
-      inlay_hints = {
-        background = true,
-      },
-    },
-  }
-})
-vim.cmd.colorscheme "catppuccin"
+vim.opt.background = "dark" -- set this to dark or light
+vim.cmd.colorscheme "oxocarbon"
 
 local animate = require('mini.animate')
 animate.setup {
@@ -266,6 +238,10 @@ require('mini.clue').setup({
     -- `z` key
     { mode = 'n', keys = 'z' },
     { mode = 'x', keys = 'z' },
+
+    -- brackets
+    { mode = 'n', keys = '[' },
+    { mode = 'n', keys = ']' },
   },
 
   clues = {
