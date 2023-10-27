@@ -41,8 +41,7 @@ require('lazy').setup({
     }
   },
 
-  -- { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
-  {"nyoom-engineering/oxocarbon.nvim", },
+  { "EdenEast/nightfox.nvim" },
 
   {
     'nvim-treesitter/nvim-treesitter',
@@ -160,8 +159,16 @@ mason_lspconfig.setup_handlers {
   end
 }
 
-vim.opt.background = "dark" -- set this to dark or light
-vim.cmd.colorscheme "oxocarbon"
+vim.cmd("colorscheme nightfox")
+require('nightfox').setup({
+  options = {
+    styles = {
+      comments = "italic",
+      keywords = "bold",
+      types = "italic,bold",
+    }
+  }
+})
 
 local animate = require('mini.animate')
 animate.setup {
@@ -193,7 +200,7 @@ require('mini.pick').setup({
         width = width,
         row = math.floor(0.5 * (vim.o.lines - height)),
         col = math.floor(0.5 * (vim.o.columns - width)),
-        border = 'single',
+        border = 'double',
       }
     end,
   }
@@ -201,14 +208,14 @@ require('mini.pick').setup({
 require("mini.starter").setup()
 require('mini.pairs').setup()
 require('mini.completion').setup({
-  window = { info = { border = 'single' } }
+  window = { info = { border = 'double' } }
 })
 require('mini.statusline').setup({
-  use_icons = false
 })
 require('mini.indentscope').setup({
   symbol = "❗️"
 })
+require('mini.tabline').setup()
 require('mini.bracketed').setup()
 require('mini.clue').setup({
   triggers = {
