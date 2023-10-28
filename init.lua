@@ -148,9 +148,7 @@ mason_lspconfig.setup_handlers {
               print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
             end, '[W]orkspace [L]ist Folders')
 
-            vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-              vim.lsp.buf.format()
-            end, { desc = 'Format current buffer with LSP' })
+            vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
           end,
 
       settings = servers[server_name],
@@ -173,7 +171,6 @@ require('nightfox').setup({
 local animate = require('mini.animate')
 animate.setup {
   scroll = {
-    -- Disable Scroll Animations, as the can interfer with mouse Scrolling
     enable = false,
   },
   cursor = {
