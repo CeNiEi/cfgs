@@ -206,9 +206,11 @@ require('mini.pairs').setup({
     ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
 
     ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
+    ["'"] = false,
     ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
   },
 })
+
 require('mini.completion').setup({
   window = { info = { border = 'double' } }
 })
@@ -251,6 +253,9 @@ require('mini.clue').setup({
     -- `z` key
     { mode = 'n', keys = 'z' },
     { mode = 'x', keys = 'z' },
+
+    -- pairs
+    { mode = 'n', keys = 's' },
 
     -- brackets
     { mode = 'n', keys = '[' },
