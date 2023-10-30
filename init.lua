@@ -29,17 +29,9 @@ require('lazy').setup({
     },
   },
 
-  { 'echasnovski/mini.nvim', version = false },
+  { 'echasnovski/mini.nvim',      version = false },
 
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    }
-  },
+  { "nvim-tree/nvim-web-devicons" },
 
   { "EdenEast/nightfox.nvim" },
 
@@ -203,15 +195,30 @@ require('mini.pick').setup({
   }
 })
 require("mini.starter").setup()
-require('mini.pairs').setup()
+require('mini.pairs').setup({
+  mappings = {
+    ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
+    ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
+    ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
+
+    [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\].' },
+    [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
+    ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
+
+    ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
+    ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
+  },
+})
 require('mini.completion').setup({
   window = { info = { border = 'double' } }
 })
 require('mini.statusline').setup({
 })
+require('mini.files').setup({})
 require('mini.indentscope').setup({
   symbol = "❗️"
 })
+require('mini.move').setup({})
 require('mini.tabline').setup()
 require('mini.bracketed').setup()
 require('mini.clue').setup({
@@ -267,22 +274,6 @@ require('mini.clue').setup({
   }
 })
 
--- setup neotree
-require("neo-tree").setup({
-  close_if_last_window = true,
-  filesystem = {
-    follow_current_file = {
-      enable = true
-    }
-  },
-  buffer = {
-    follow_current_file = {
-      enable = true
-    }
-  }
-})
-
-vim.keymap.set("n", "<leader>o", "<CMD>Neotree toggle<CR>", { desc = "[O]pen file explorer" })
 
 vim.keymap.set("n", "<leader>ff", "<cmd>lua MiniPick.builtin.files()<cr>",
   { noremap = true, silent = true, desc = 'Find File' })
