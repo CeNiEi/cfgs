@@ -279,17 +279,17 @@ require('mini.clue').setup({
   }
 })
 
-
 vim.keymap.set("n", "<leader>ff", "<cmd>lua MiniPick.builtin.files()<cr>",
   { noremap = true, silent = true, desc = 'Find File' })
-vim.keymap.set("n", "<leader>fm", "<cmd>lua MiniFiles.open()<cr>",
-  { noremap = true, silent = true, desc = 'Find Manualy' })
 vim.keymap.set("n", "<leader>fb", "<cmd>lua MiniPick.builtin.buffers()<cr>",
   { noremap = true, silent = true, desc = 'Find Buffer' })
 vim.keymap.set("n", "<leader>fs", "<cmd>lua MiniPick.builtin.grep_live()<cr>",
   { noremap = true, silent = true, desc = 'Find String' })
 vim.keymap.set("n", "<leader>fh", "<cmd>lua MiniPick.builtin.help()<cr>",
   { noremap = true, silent = true, desc = 'Find Help' })
+
+vim.keymap.set("n", "<leader>o", "<cmd>lua MiniFiles.open()<cr>",
+  { noremap = true, silent = true, desc = 'Open File Tree' })
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
