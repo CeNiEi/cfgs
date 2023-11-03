@@ -198,7 +198,7 @@ require('mini.statusline').setup({
 })
 require('mini.files').setup({})
 require('mini.indentscope').setup({
-  symbol = "❗️"
+  symbol = "⌠"
 })
 require('mini.move').setup({})
 require('mini.tabline').setup()
