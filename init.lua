@@ -172,6 +172,7 @@ animate.setup {
 }
 require("mini.comment").setup()
 require("mini.surround").setup()
+require("mini.extra").setup()
 require('mini.pick').setup({
   mappings = {
     choose_in_vsplit = '<C-CR>',
@@ -279,17 +280,23 @@ require('mini.clue').setup({
   }
 })
 
-vim.keymap.set("n", "<leader>ff", "<cmd>lua MiniPick.builtin.files()<cr>",
+vim.keymap.set("n", "<leader>ff", "<cmd>Pick files<cr>",
   { noremap = true, silent = true, desc = 'Find File' })
-vim.keymap.set("n", "<leader>fb", "<cmd>lua MiniPick.builtin.buffers()<cr>",
+vim.keymap.set("n", "<leader>fb", "<cmd>Pick buffers<cr>",
   { noremap = true, silent = true, desc = 'Find Buffer' })
-vim.keymap.set("n", "<leader>fs", "<cmd>lua MiniPick.builtin.grep_live()<cr>",
+
+vim.keymap.set("n", "<leader>fs", "<cmd>Pick grep_live<cr>",
   { noremap = true, silent = true, desc = 'Find String' })
-vim.keymap.set("n", "<leader>fh", "<cmd>lua MiniPick.builtin.help()<cr>",
+
+vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<cr>",
   { noremap = true, silent = true, desc = 'Find Help' })
+
+vim.keymap.set("n", "<leader>fr", "<cmd>Pick lsp scope=\"references\"<cr>",
+  { noremap = true, silent = true, desc = 'Find Refs' })
+
 
 vim.keymap.set("n", "<leader>o", "<cmd>lua MiniFiles.open()<cr>",
   { noremap = true, silent = true, desc = 'Open File Tree' })
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
