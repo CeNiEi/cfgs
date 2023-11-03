@@ -119,27 +119,6 @@ mason_lspconfig.setup_handlers {
     require('lspconfig')[server_name].setup {
       on_attach =
           function(_, bufnr)
-            local nmap = function(keys, func, desc)
-              if desc then
-                desc = 'LSP: ' .. desc
-              end
-
-              vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-            end
-
-            nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-            nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-
-            nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-            nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-            nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-            nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-            nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-            nmap('<leader>wl', function()
-              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end, '[W]orkspace [L]ist Folders')
-
             vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
           end,
 
@@ -264,10 +243,6 @@ require('mini.clue').setup({
   },
 
   clues = {
-    { mode = 'n', keys = '<Leader>f', desc = 'Find' },
-    { mode = 'n', keys = '<Leader>s', desc = 'Switch' },
-    { mode = 'n', keys = '<Leader>b', desc = 'Buffer' },
-    { mode = 'n', keys = '<Leader>g', desc = 'Git' },
     function() MiniClue.gen_clues.g() end,
     function() MiniClue.gen_clues.builtin_completion() end,
     function() MiniClue.gen_clues.marks() end,
@@ -282,21 +257,33 @@ require('mini.clue').setup({
 
 vim.keymap.set("n", "<leader>ff", "<cmd>Pick files<cr>",
   { noremap = true, silent = true, desc = 'Find File' })
-vim.keymap.set("n", "<leader>fb", "<cmd>Pick buffers<cr>",
+vim.keymap.set("n", "<leader>bb", "<cmd>Pick buffers<cr>",
   { noremap = true, silent = true, desc = 'Find Buffer' })
-
-vim.keymap.set("n", "<leader>fs", "<cmd>Pick grep_live<cr>",
+vim.keymap.set("n", "<leader>gg", "<cmd>Pick grep_live<cr>",
   { noremap = true, silent = true, desc = 'Find String' })
-
-vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<cr>",
+vim.keymap.set("n", "<leader>hh", "<cmd>Pick help<cr>",
   { noremap = true, silent = true, desc = 'Find Help' })
-
-vim.keymap.set("n", "<leader>fr", "<cmd>Pick lsp scope=\"references\"<cr>",
+vim.keymap.set("n", "<leader>dd", "<cmd>Pick diagnostic<cr>",
   { noremap = true, silent = true, desc = 'Find Refs' })
 
+vim.keymap.set("n", "<leader>gr", "<cmd>Pick lsp scope=\"references\"<cr>",
+  { noremap = true, silent = true, desc = 'Find Refs' })
+vim.keymap.set("n", "<leader>gd", "<cmd>Pick lsp scope=\"definition\"<cr>",
+  { noremap = true, silent = true, desc = 'Find Definition' })
+vim.keymap.set("n", "<leader>gi", "<cmd>Pick lsp scope=\"implementation\"<cr>",
+  { noremap = true, silent = true, desc = 'Find Implementation' })
+vim.keymap.set("n", "<leader>gD", "<cmd>Pick lsp scope=\"declaration\"<cr>",
+  { noremap = true, silent = true, desc = 'Find Declaration' })
+
+vim.keymap.set("n", "<leader>gs", "<cmd>Pick lsp scope=\"document_symbol\"<cr>",
+  { noremap = true, silent = true, desc = 'Find Document Symbols' })
+vim.keymap.set("n", "<leader>gS", "<cmd>Pick lsp scope=\"workspace_symbol\"<cr>",
+  { noremap = true, silent = true, desc = 'Find Workspace Symbols' })
+
+vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>",
+  { noremap = true, silent = true, desc = 'Hover' })
 
 vim.keymap.set("n", "<leader>o", "<cmd>lua MiniFiles.open()<cr>",
   { noremap = true, silent = true, desc = 'Open File Tree' })
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
