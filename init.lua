@@ -276,7 +276,34 @@ vim.keymap.set("n", "gS", "<cmd>Pick lsp scope=\"workspace_symbol\"<cr>",
 vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>",
   { noremap = true, silent = true, desc = 'Hover' })
 
-vim.keymap.set("n", "<leader>o", "<cmd>lua MiniFiles.open()<cr>",
-  { noremap = true, silent = true, desc = 'Open File Tree' })
+local show_dotfiles = false
+
+local filter_show = function(fs_entry) return true end
+
+local filter_hide = function(fs_entry)
+  return not vim.startswith(fs_entry.name, '.')
+end
+
+local toggle_dotfiles = function()
+  show_dotfiles = not show_dotfiles
+  local new_filter = show_dotfiles and filter_show or filter_hide
+  MiniFiles.refresh({ content = { filter = new_filter } })
+end
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'MiniFilesBufferCreate',
+  callback = function(args)
+    local buf_id = args.data.buf_id
+    vim.keymap.set('n', 'H', toggle_dotfiles, { buffer = buf_id })
+  end,
+})
+
+vim.keymap.set("n", "<leader>o", function(...)
+    if not MiniFiles.close() then
+      MiniFiles.open(...)
+      MiniFiles.refresh({ content = { filter = filter_hide } })
+    end
+  end,
+  { noremap = true, silent = true, desc = 'Toggle File Tree' })
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
