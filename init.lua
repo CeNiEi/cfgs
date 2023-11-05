@@ -150,7 +150,7 @@ require('mini.pick').setup({
         width = width,
         row = math.floor(0.5 * (vim.o.lines - height)),
         col = math.floor(0.5 * (vim.o.columns - width)),
-        border = 'double',
+        border = 'rounded',
       }
     end,
   }
@@ -158,10 +158,24 @@ require('mini.pick').setup({
 require("mini.basics").setup({
   options = {
     extra_ui = true,
-    win_borders = 'double',
+    win_borders = 'rounded',
   },
 })
-require("mini.starter").setup()
+require("mini.starter").setup({
+  header = [[
+ ▄████████    ▄████████ ███▄▄▄▄    ▄█     ▄████████  ▄█
+███    ███   ███    ███ ███▀▀▀██▄ ███    ███    ███ ███
+███    █▀    ███    █▀  ███   ███ ███▌   ███    █▀  ███▌
+███         ▄███▄▄▄     ███   ███ ███▌  ▄███▄▄▄     ███▌
+███        ▀▀███▀▀▀     ███   ███ ███▌ ▀▀███▀▀▀     ███▌
+███    █▄    ███    █▄  ███   ███ ███    ███    █▄  ███
+███    ███   ███    ███ ███   ███ ███    ███    ███ ███
+████████▀    ██████████  ▀█   █▀  █▀     ██████████ █▀
+  ]],
+  footer = [[
+  LIFETIME MAY NOT LIVE LONG ENOUGH
+  ]]
+})
 require('mini.pairs').setup({
   mappings = {
     ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
@@ -179,7 +193,7 @@ require('mini.pairs').setup({
 })
 
 require('mini.completion').setup({
-  window = { info = { border = 'double' } }
+  window = { info = { border = 'rounded' } }
 })
 require('mini.statusline').setup({
 })
