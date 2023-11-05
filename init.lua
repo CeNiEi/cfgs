@@ -45,41 +45,24 @@ require('lazy').setup({
 
 }, {})
 
-vim.o.hlsearch = false
-
-vim.wo.number = true
-
-vim.o.mouse = 'a'
-
+-- vim.wo.number = true
+-- vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
-
-vim.o.breakindent = true
-
-vim.o.undofile = true
-
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
-vim.wo.signcolumn = 'yes'
-
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
-
-vim.o.completeopt = 'menuone,noselect'
+-- vim.o.breakindent = true
+-- vim.o.undofile = true
+-- vim.o.ignorecase = true
+-- vim.o.smartcase = true
+-- vim.wo.signcolumn = 'yes'
+-- vim.o.updatetime = 250
+-- vim.o.timeoutlen = 300
+-- vim.o.completeopt = 'menuone,noselect'
 
 vim.wo.relativenumber = true
 
-vim.o.termguicolors = true
-
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
--- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
-    -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'vim', 'toml', 'haskell' },
 
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
 
     highlight = { enable = true },
@@ -96,6 +79,7 @@ vim.defer_fn(function()
   }
 end, 0)
 
+
 local servers = {
   rust_analyzer = {},
   hls = {},
@@ -107,7 +91,7 @@ local servers = {
   },
 }
 
--- Ensure the servers above are installed
+
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
@@ -153,9 +137,6 @@ require("mini.comment").setup()
 require("mini.surround").setup()
 require("mini.extra").setup()
 require('mini.pick').setup({
-  mappings = {
-    choose_in_vsplit = '<C-CR>',
-  },
   options = {
     use_cache = true
   },
@@ -173,6 +154,12 @@ require('mini.pick').setup({
       }
     end,
   }
+})
+require("mini.basics").setup({
+  options = {
+    extra_ui = true,
+    win_borders = 'double',
+  },
 })
 require("mini.starter").setup()
 require('mini.pairs').setup({
@@ -205,39 +192,31 @@ require('mini.tabline').setup()
 require('mini.bracketed').setup()
 require('mini.clue').setup({
   triggers = {
-    -- Leader triggers
     { mode = 'n', keys = '<Leader>' },
     { mode = 'x', keys = '<Leader>' },
-    -- Built-in completion
+
     { mode = 'i', keys = '<C-x>' },
 
-    -- `g` key
     { mode = 'n', keys = 'g' },
     { mode = 'x', keys = 'g' },
 
-    -- Marks
     { mode = 'n', keys = "'" },
     { mode = 'n', keys = '`' },
     { mode = 'x', keys = "'" },
     { mode = 'x', keys = '`' },
 
-    -- Registers
     { mode = 'n', keys = '"' },
     { mode = 'x', keys = '"' },
     { mode = 'i', keys = '<C-r>' },
     { mode = 'c', keys = '<C-r>' },
 
-    -- Window commands
     { mode = 'n', keys = '<C-w>' },
 
-    -- `z` key
     { mode = 'n', keys = 'z' },
     { mode = 'x', keys = 'z' },
 
-    -- pairs
     { mode = 'n', keys = 's' },
 
-    -- brackets
     { mode = 'n', keys = '[' },
     { mode = 'n', keys = ']' },
   },
@@ -264,20 +243,20 @@ vim.keymap.set("n", "<leader>gg", "<cmd>Pick grep_live<cr>",
 vim.keymap.set("n", "<leader>hh", "<cmd>Pick help<cr>",
   { noremap = true, silent = true, desc = 'Find Help' })
 vim.keymap.set("n", "<leader>dd", "<cmd>Pick diagnostic<cr>",
-  { noremap = true, silent = true, desc = 'Find Refs' })
+  { noremap = true, silent = true, desc = 'Find diagnostics' })
 
-vim.keymap.set("n", "<leader>gr", "<cmd>Pick lsp scope=\"references\"<cr>",
+vim.keymap.set("n", "gr", "<cmd>Pick lsp scope=\"references\"<cr>",
   { noremap = true, silent = true, desc = 'Find Refs' })
-vim.keymap.set("n", "<leader>gd", "<cmd>Pick lsp scope=\"definition\"<cr>",
+vim.keymap.set("n", "gd", "<cmd>Pick lsp scope=\"definition\"<cr>",
   { noremap = true, silent = true, desc = 'Find Definition' })
-vim.keymap.set("n", "<leader>gi", "<cmd>Pick lsp scope=\"implementation\"<cr>",
+vim.keymap.set("n", "gi", "<cmd>Pick lsp scope=\"implementation\"<cr>",
   { noremap = true, silent = true, desc = 'Find Implementation' })
-vim.keymap.set("n", "<leader>gD", "<cmd>Pick lsp scope=\"declaration\"<cr>",
+vim.keymap.set("n", "gD", "<cmd>Pick lsp scope=\"declaration\"<cr>",
   { noremap = true, silent = true, desc = 'Find Declaration' })
 
-vim.keymap.set("n", "<leader>gs", "<cmd>Pick lsp scope=\"document_symbol\"<cr>",
+vim.keymap.set("n", "gs", "<cmd>Pick lsp scope=\"document_symbol\"<cr>",
   { noremap = true, silent = true, desc = 'Find Document Symbols' })
-vim.keymap.set("n", "<leader>gS", "<cmd>Pick lsp scope=\"workspace_symbol\"<cr>",
+vim.keymap.set("n", "gS", "<cmd>Pick lsp scope=\"workspace_symbol\"<cr>",
   { noremap = true, silent = true, desc = 'Find Workspace Symbols' })
 
 vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>",
