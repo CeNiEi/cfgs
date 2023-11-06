@@ -83,6 +83,7 @@ end, 0)
 local servers = {
   rust_analyzer = {},
   hls = {},
+  pyright = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
