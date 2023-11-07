@@ -56,6 +56,7 @@ vim.o.clipboard = 'unnamedplus'
 -- vim.o.updatetime = 250
 -- vim.o.timeoutlen = 300
 -- vim.o.completeopt = 'menuone,noselect'
+--
 
 vim.wo.relativenumber = true
 
@@ -113,6 +114,12 @@ mason_lspconfig.setup_handlers {
   end
 }
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = "double",
+  }
+)
+
 vim.cmd("colorscheme nightfox")
 require('nightfox').setup({
   options = {
@@ -151,7 +158,7 @@ require('mini.pick').setup({
         width = width,
         row = math.floor(0.5 * (vim.o.lines - height)),
         col = math.floor(0.5 * (vim.o.columns - width)),
-        border = 'rounded',
+        border = 'double',
       }
     end,
   }
@@ -159,7 +166,7 @@ require('mini.pick').setup({
 require("mini.basics").setup({
   options = {
     extra_ui = true,
-    win_borders = 'rounded',
+    win_borders = 'double',
   },
 })
 require("mini.starter").setup({
@@ -206,7 +213,10 @@ require('mini.pairs').setup({
 })
 
 require('mini.completion').setup({
-  window = { info = { border = 'rounded' } }
+  window = {
+    info = { border = 'double' },
+    signature = { border = 'double' }
+  }
 })
 require('mini.statusline').setup({
 })
@@ -257,7 +267,7 @@ require('mini.clue').setup({
     function() MiniClue.gen_clues.z() end,
   },
   window = {
-    delay = 300
+    delay = 200
   }
 })
 
