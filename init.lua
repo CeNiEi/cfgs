@@ -15,7 +15,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-
 require('lazy').setup({
   'tpope/vim-sleuth',
 
@@ -25,7 +24,7 @@ require('lazy').setup({
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
 
-      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
     },
   },
 
@@ -45,18 +44,19 @@ require('lazy').setup({
 
 }, {})
 
--- vim.wo.number = true
--- vim.o.mouse = 'a'
+
+vim.wo.number = true
+vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
--- vim.o.breakindent = true
--- vim.o.undofile = true
--- vim.o.ignorecase = true
--- vim.o.smartcase = true
--- vim.wo.signcolumn = 'yes'
--- vim.o.updatetime = 250
--- vim.o.timeoutlen = 300
--- vim.o.completeopt = 'menuone,noselect'
---
+vim.o.breakindent = true
+vim.o.undofile = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.wo.signcolumn = 'yes'
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+vim.o.completeopt = 'menuone,noselect'
+
 
 vim.wo.relativenumber = true
 
@@ -171,30 +171,30 @@ require("mini.basics").setup({
 })
 require("mini.starter").setup({
   header = [[
-                            ⠀⠀⠀⠀⠀⠀⢱⣆⠀⠀⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⢱⣆⠀⠀⠀⠀⠀⠀  ⠀
-                            ⠀⠀⠀⠀⠀⠀⠈⣿⣷⡀⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠈⣿⣷⡀⠀⠀⠀⠀
-                            ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣧⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣧⠀⠀⠀
-                            ⠀⠀⠀⠀⡀⢠⣿⡟⣿⣿⣿⡇⠀⠀    ⠀⠀⠀⠀⡀⢠⣿⡟⣿⣿⣿⡇⠀⠀
-                            ⠀⠀⠀⠀⣳⣼⣿⡏⢸⣿⣿⣿⢀⠀    ⠀⠀⠀⠀⣳⣼⣿⡏⢸⣿⣿⣿⢀⠀
-                            ⠀⠀⠀⣰⣿⣿⡿⠁⢸⣿⣿⡟⣼⡆    ⠀⠀⠀⣰⣿⣿⡿⠁⢸⣿⣿⡟⣼⡆
-                            ⢰⢀⣾⣿⣿⠟⠀⠀⣾⢿⣿⣿⣿⣿    ⢰⢀⣾⣿⣿⠟⠀⠀⣾⢿⣿⣿⣿⣿
-                            ⢸⣿⣿⣿⡏⠀⠀⠀⠃⠸⣿⣿⣿⡿    ⢸⣿⣿⣿⡏⠀⠀⠀⠃⠸⣿⣿⣿⡿
-                            ⢳⣿⣿⣿⠀⠀⠀⠀⠀⠀⢹⣿⡿⡁    ⢳⣿⣿⣿⠀⠀⠀⠀⠀⠀⢹⣿⡿⡁
-                            ⠀⠹⣿⣿⡄⠀⠀⠀⠀⠀⢠⣿⡞⠁    ⠀⠹⣿⣿⡄⠀⠀⠀⠀⠀⢠⣿⡞⠁
-                            ⠀⠀⠈⠛⢿⣄⠀⠀⠀⣠⠞⠋⠀⠀    ⠀⠀⠈⠛⢿⣄⠀⠀⠀⣠⠞⠋⠀⠀
-                            ⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀
- ▄████████    ▄████████ ███▄▄▄▄    ▄█     ▄████████  ▄█
-███    ███   ███    ███ ███▀▀▀██▄ ███    ███    ███ ███
-███    █▀    ███    █▀  ███   ███ ███▌   ███    █▀  ███▌
-███         ▄███▄▄▄     ███   ███ ███▌  ▄███▄▄▄     ███▌
-███        ▀▀███▀▀▀     ███   ███ ███▌ ▀▀███▀▀▀     ███▌
-███    █▄    ███    █▄  ███   ███ ███    ███    █▄  ███
-███    ███   ███    ███ ███   ███ ███    ███    ███ ███
-████████▀    ██████████  ▀█   █▀  █▀     ██████████ █▀
-  ]],
+                             ⠀⠀⠀⠀⠀⠀⢱⣆⠀⠀⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⢱⣆⠀⠀⠀⠀⠀⠀  ⠀
+                             ⠀⠀⠀⠀⠀⠀⠈⣿⣷⡀⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠈⣿⣷⡀⠀⠀⠀⠀
+                             ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣧⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣧⠀⠀⠀
+                             ⠀⠀⠀⠀⡀⢠⣿⡟⣿⣿⣿⡇⠀⠀    ⠀⠀⠀⠀⡀⢠⣿⡟⣿⣿⣿⡇⠀⠀
+                             ⠀⠀⠀⠀⣳⣼⣿⡏⢸⣿⣿⣿⢀⠀    ⠀⠀⠀⠀⣳⣼⣿⡏⢸⣿⣿⣿⢀⠀
+                             ⠀⠀⠀⣰⣿⣿⡿⠁⢸⣿⣿⡟⣼⡆    ⠀⠀⠀⣰⣿⣿⡿⠁⢸⣿⣿⡟⣼⡆
+                             ⢰⢀⣾⣿⣿⠟⠀⠀⣾⢿⣿⣿⣿⣿    ⢰⢀⣾⣿⣿⠟⠀⠀⣾⢿⣿⣿⣿⣿
+                             ⢸⣿⣿⣿⡏⠀⠀⠀⠃⠸⣿⣿⣿⡿    ⢸⣿⣿⣿⡏⠀⠀⠀⠃⠸⣿⣿⣿⡿
+                             ⢳⣿⣿⣿⠀⠀⠀⠀⠀⠀⢹⣿⡿⡁    ⢳⣿⣿⣿⠀⠀⠀⠀⠀⠀⢹⣿⡿⡁
+                             ⠀⠹⣿⣿⡄⠀⠀⠀⠀⠀⢠⣿⡞⠁    ⠀⠹⣿⣿⡄⠀⠀⠀⠀⠀⢠⣿⡞⠁
+                             ⠀⠀⠈⠛⢿⣄⠀⠀⠀⣠⠞⠋⠀⠀    ⠀⠀⠈⠛⢿⣄⠀⠀⠀⣠⠞⠋⠀⠀
+                             ⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀
+  ▄████████    ▄████████ ███▄▄▄▄    ▄█     ▄████████  ▄█
+ ███    ███   ███    ███ ███▀▀▀██▄ ███    ███    ███ ███
+ ███    █▀    ███    █▀  ███   ███ ███▌   ███    █▀  ███▌
+ ███         ▄███▄▄▄     ███   ███ ███▌  ▄███▄▄▄     ███▌
+ ███        ▀▀███▀▀▀     ███   ███ ███▌ ▀▀███▀▀▀     ███▌
+ ███    █▄    ███    █▄  ███   ███ ███    ███    █▄  ███
+ ███    ███   ███    ███ ███   ███ ███    ███    ███ ███
+ ████████▀    ██████████  ▀█   █▀  █▀     ██████████ █▀
+   ]],
   footer = [[
-  LIFETIME MAY NOT LIVE LONG ENOUGH
-  ]]
+   LIFETIME MAY NOT LIVE LONG ENOUGH
+   ]]
 })
 require('mini.pairs').setup({
   mappings = {
@@ -328,5 +328,6 @@ vim.keymap.set("n", "<leader>o", function(...)
     end
   end,
   { noremap = true, silent = true, desc = 'Toggle File Tree' })
+
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
