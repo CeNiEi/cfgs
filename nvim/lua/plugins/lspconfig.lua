@@ -31,6 +31,10 @@ return {
 					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
+				map("K", function()
+					vim.lsp.buf.hover({ border = "rounded" })
+				end, "Hover Documentation")
+
 				-- Rename the variable under your cursor.
 				--  Most Language Servers support renaming across files, etc.
 				map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
