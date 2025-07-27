@@ -7,3 +7,4 @@ fish_add_path ~/.cabal/bin
 fzf --fish | source
 zoxide init fish --cmd cd | source
 ~/.local/bin/mise activate fish | source
+fish_add_path ~/.elan/bin
