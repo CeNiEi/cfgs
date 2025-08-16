@@ -5,7 +5,7 @@ config.color_scheme = "Everforest Dark (Gogh)"
 config.enable_tab_bar = false
 
 -- How many lines of scrollback you want to retain per tab
-config.scrollback_lines = 3500
+config.scrollback_lines = 35000
 
 -- Spawn a fish shell in login mode
 config.default_prog = { "/opt/homebrew/bin/fish" }
