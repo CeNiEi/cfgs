@@ -8,3 +8,5 @@ fzf --fish | source
 zoxide init fish --cmd cd | source
 ~/.local/bin/mise activate fish | source
 fish_add_path ~/.elan/bin
+
+alias sqlite="/opt/homebrew/opt/sqlite/bin/sqlite3" 
