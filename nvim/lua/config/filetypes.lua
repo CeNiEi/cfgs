@@ -13,3 +13,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.commentstring = "// %s"
 	end,
 })
+
+vim.filetype.add({ extension = { slint = "slint" } })
