@@ -10,3 +10,5 @@ zoxide init fish --cmd cd | source
 fish_add_path ~/.elan/bin
 
 alias sqlite="/opt/homebrew/opt/sqlite/bin/sqlite3" 
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
