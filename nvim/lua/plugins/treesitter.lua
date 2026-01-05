@@ -4,7 +4,7 @@ return { -- Highlight, edit, and navigate code
 	main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 	opts = {
-		ensure_installed = { "rust", "lua", "toml" },
+		ensure_installed = {},
 		-- Autoinstall languages that are not installed
 		auto_install = false,
 		highlight = {
@@ -17,9 +17,9 @@ return { -- Highlight, edit, and navigate code
 		incremental_selection = {
 			enable = true,
 			keymaps = {
-				init_selection = "<CR>",
-				node_incremental = "<CR>",
-				node_decremental = "<S-CR>",
+				init_selection = ",",
+				node_incremental = ",",
+				node_decremental = ".",
 			},
 		},
 	},

@@ -11,6 +11,7 @@ return {
 					config = {
 						workspaces = {
 							conlang = "~/Documents/conlang/",
+							trivia = "~/Documents/trivia/",
 						},
 					},
 				},
